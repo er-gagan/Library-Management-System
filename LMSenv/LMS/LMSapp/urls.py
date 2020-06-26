@@ -7,4 +7,13 @@ urlpatterns = [
     path('StudentLoginPage',views.StudentLoginPage),
     path('AdminWelcomePage',views.AdminWelcomePage),
     
+    path('StudentRegistrationPage',views.StudentRegistrationPage),
+    path('BookIssueToStudent',views.BookIssueToStudent),
+    path('BookSubmitByStudent',views.BookSubmitByStudent),
+    path('FacultyRegistrationPage',views.FacultyRegistrationPage),
+    path('BookIssueToFaculty',views.BookIssueToFaculty),
+    path('BookSubmitByFaculty',views.BookSubmitByFaculty),
+    path('ViewAllBookPage',views.ViewAllBookPage),
+    path('ViewBooksByBranch',views.ViewBooksByBranch),
+
 ]

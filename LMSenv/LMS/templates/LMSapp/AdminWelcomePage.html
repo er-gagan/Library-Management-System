@@ -6,40 +6,67 @@
     <h2 class="mx-5 my-3">Welcome Admin!</h2>
     <hr>
     <div class="row">
-        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-            <input type="submit" class="btn btn-primary btn-css" value="Student Registration">
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/StudentRegistrationPage" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary btn-css" value="Student Registration">
+            </form>
         </div>
-        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-            <input type="submit" class="btn btn-primary btn-css" value="Book Issue to Student">
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/BookIssueToStudent" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary btn-css" value="Book Issue to Student">
+            </form>
         </div>
-        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-            <input type="submit" class="btn btn-primary btn-css" value="Book Submit by Student">
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-            <input type="submit" class="btn btn-primary btn-css" value="Faculty Registration">
-        </div>
-        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-            <input type="submit" class="btn btn-primary btn-css" value="Book Issue to Faculty">
-        </div>
-        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-            <input type="submit" class="btn btn-primary btn-css" value="Book Submit by Faculty">
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/BookSubmitByStudent" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary btn-css" value="Book Submit by Student">
+            </form>
         </div>
     </div>
 
 
     <div class="row">
-        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-            <input type="submit" class="btn btn-primary btn-css" value="View All Books">
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/FacultyRegistrationPage" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary btn-css" value="Faculty Registration">
+            </form>
         </div>
-        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-            <input type="submit" class="btn btn-primary btn-css" value="View Books By Branch">
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/BookIssueToFaculty" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary btn-css" value="Book Issue to Faculty">
+            </form>
         </div>
-        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-            <input type="submit" class="btn btn-primary btn-css" value="...">
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/BookSubmitByFaculty" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary btn-css" value="Book Submit by Faculty">
+            </form>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/ViewAllBookPage" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary btn-css" value="View All Books">
+            </form>
+        </div>
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/ViewBooksByBranch" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary btn-css" value="View Books By Branch">
+            </form>
+        </div>
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="#" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary btn-css" value="...">
+            </form>
         </div>
     </div>
 

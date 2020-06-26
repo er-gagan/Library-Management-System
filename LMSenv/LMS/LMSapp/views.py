@@ -16,3 +16,51 @@ def AdminWelcomePage(request):
         return render(request,"LMSapp/AdminWelcomePage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
+    
+def StudentRegistrationPage(request):
+    if request.method == 'POST':
+        return render(request,"LMSapp/StudentRegistrationPage.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+
+def BookIssueToStudent(request):
+    if request.method == 'POST':
+        return render(request,"LMSapp/BookIssueToStudent.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+
+def BookSubmitByStudent(request):
+    if request.method == 'POST':
+        return render(request,"LMSapp/BookSubmitByStudent.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+
+def FacultyRegistrationPage(request):
+    if request.method == 'POST':
+        return render(request,"LMSapp/FacultyRegistrationPage.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+
+def BookIssueToFaculty(request):
+    if request.method == 'POST':
+        return render(request,"LMSapp/BookIssueToFaculty.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+
+def BookSubmitByFaculty(request):
+    if request.method == 'POST':
+        return render(request,"LMSapp/BookSubmitByFaculty.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+
+def ViewAllBookPage(request):
+    if request.method == 'POST':
+        return render(request,"LMSapp/ViewAllBookPage.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+
+def ViewBooksByBranch(request):
+    if request.method == 'POST':
+        return render(request,"LMSapp/ViewBooksByBranch.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
