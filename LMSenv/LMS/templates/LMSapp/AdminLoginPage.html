@@ -4,7 +4,8 @@
 <div class="container mx-5 my-3">
     <h2 class="mb-3">Welcome Admin!</h2 class="mb-3">
     <h4>Please Enter Unique Admin ID and Password</h4>
-    <form>
+    <form method="POST" action="/AdminWelcomePage">
+        {% csrf_token %}
         <div class="form-group">
             <label for="exampleInputEmail1">Login ID</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/AdminWelcomePage.css' %}">
+<div class="container">
+    <h2 class="mx-5 my-3">Welcome Admin!</h2>
+    <hr>
+    <div class="row">
+        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <input type="submit" class="btn btn-primary btn-css" value="Student Registration">
+        </div>
+        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <input type="submit" class="btn btn-primary btn-css" value="Book Issue to Student">
+        </div>
+        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <input type="submit" class="btn btn-primary btn-css" value="Book Submit by Student">
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <input type="submit" class="btn btn-primary btn-css" value="Faculty Registration">
+        </div>
+        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <input type="submit" class="btn btn-primary btn-css" value="Book Issue to Faculty">
+        </div>
+        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <input type="submit" class="btn btn-primary btn-css" value="Book Submit by Faculty">
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <input type="submit" class="btn btn-primary btn-css" value="View All Books">
+        </div>
+        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <input type="submit" class="btn btn-primary btn-css" value="View Books By Branch">
+        </div>
+        <div class="mb-5 text-center col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <input type="submit" class="btn btn-primary btn-css" value="...">
+        </div>
+    </div>
+
+</div>
+{% endblock body %}
