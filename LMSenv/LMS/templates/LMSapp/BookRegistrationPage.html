@@ -2,6 +2,58 @@
 
 
 {% block body %}
-    <h1>BookRegistrationPage.html</h1>
+<div class="container my-3">
+    <h3>Please Fill Book Information Carefully</h3>
+    <hr>
+    <form action="#" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="BookID">Book ID</label>
+            <input type="text" class="form-control" id="BookID" placeholder="Please Enter Book ID">
+        </div>
+        <div class="form-group">
+            <label for="BookName">Book Name</label>
+            <input type="text" class="form-control" id="BookName"">
+        </div>
+        <div class=" form-group">
+            <label for="Author1">Book Author 1</label>
+            <input type="text" class="form-control" id="Author1"">
+        </div>
+        <div class=" form-group">
+            <label for="Author2">Book Author 2</label>
+            <input type="text" class="form-control" id="Author2">
+        </div>
+        <div class="form-group">
+            <label for="Publisher">Book Publisher</label>
+            <input type="text" class="form-control" id="Publisher">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-xl-4">
+                <label for="Page">Total Page</label>
+                <input type="text" class="form-control" id="Page"">                
+            </div>
+            <div class=" form-group col-xl-4">
+                <label for="Price">Book Price</label>
+                <input type="text" class="form-control" id="Price">
+            </div>
+            <div class="form-group col-xl-4">
+                <label for="BookBelongsCourse">Book Belongs to Course/Branch/Department</label>
+                <div class="dropdown">
+                    <button class="btn border border-secondary dropdown-toggle px-5" type="button"
+                        id="BookBelongsCourse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select Course/Branch/Department
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">MCA</a>
+                        <a class="dropdown-item" href="#">MBA</a>
+                        <a class="dropdown-item" href="#">Computer Science Engineer</a>
+                        <a class="dropdown-item" href="#">Mechanical Engineer</a>
+                        <a class="dropdown-item" href="#">Civil Engineer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary mx-auto d-block btn-lg" value="Submit">
+    </form>
+</div>
 {% endblock body %}
-    
