@@ -13,7 +13,7 @@ urlpatterns = [
     path('FacultyRegistrationPage',views.FacultyRegistrationPage),
     path('BookIssueToFaculty',views.BookIssueToFaculty),
     path('BookSubmitByFaculty',views.BookSubmitByFaculty),
+    path('BookRegistrationPage',views.BookRegistrationPage),
     path('ViewAllBookPage',views.ViewAllBookPage),
     path('ViewBooksByBranch',views.ViewBooksByBranch),
-
 ]

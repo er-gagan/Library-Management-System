@@ -2,6 +2,17 @@
 
 
 {% block body %}
-<h1>BookIssueToStudent</h1>
+<div class="container m-4">
+    <h3>Please Enter Carefully <b>Student Library Registration Number</b></h3>
+    <hr>
+<form action="#" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="RegNumber">Enter Student Registration Number</label>
+        <input type="text" class="form-control" id="RegNumber" placeholder="Student Library Registration Number">
+      </div>
+    <button type="submit" class="btn btn-primary mx-auto d-block">Check</button>
+  </form>
+</div>
 {% endblock body %}
     

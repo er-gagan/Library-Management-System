@@ -53,6 +53,12 @@ def BookSubmitByFaculty(request):
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
 
+def BookRegistrationPage(request):
+    if request.method == 'POST':
+        return render(request,"LMSapp/BookRegistrationPage.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+
 def ViewAllBookPage(request):
     if request.method == 'POST':
         return render(request,"LMSapp/ViewAllBookPage.html")
