@@ -4,7 +4,6 @@
 <div class="container my-4">
   <h2>Please Fill Student Details Carefully:</h2>
   <hr>
-
   <form action="#" method="POST">
     {% csrf_token %}
     <div class="form-row">
@@ -74,28 +73,28 @@
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-3">
+      <div class="form-group col-xl-2 col-lg-2">
         <label for="Course">Course</label>
         <div class="dropdown">
-          <button class="btn border border-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn border border-secondary dropdown-toggle" type="button" id="Course" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Select Course
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu" aria-labelledby="Course">
             <a class="dropdown-item" href="#">MCA</a>
             <a class="dropdown-item" href="#">MBA</a>
             <a class="dropdown-item" href="#">PHD</a>
           </div>
         </div>
       </div>
-      <div class="form-group col-md-3">
+      <div class="form-group col-xl-2 col-lg-2">
         <label for="Year">Year</label>
         <div class="dropdown">
-          <button class="btn border border-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn border border-secondary dropdown-toggle" type="button" id="Year" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Select Year
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu" aria-labelledby="Year">
             <a class="dropdown-item" href="#">1st</a>
             <a class="dropdown-item" href="#">2nd</a>
             <a class="dropdown-item" href="#">3rd</a>
@@ -103,14 +102,14 @@
         </div>
       </div>
 
-      <div class="form-group col-md-3">
+      <div class="form-group col-xl-3 col-lg-3">
         <label for="Branch">Branch</label>
         <div class="dropdown">
-          <button class="px-4 btn border border-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn border border-secondary dropdown-toggle" type="button" id="Branch" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Select Branch
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu" aria-labelledby="Branch">
             <a class="dropdown-item" href="#">Computer Science Engineering</a>
             <a class="dropdown-item" href="#">Electronic Engineering</a>
             <a class="dropdown-item" href="#">Machanical Engineering</a>
@@ -118,14 +117,25 @@
         </div>
       </div>
 
-      <div class="form-group col-md-3">
+      <div class="form-group col-xl-2 col-lg-2">
+        <label for="Gender">Gender</label>
+        <div class="dropdown">
+          <button class="btn border border-secondary dropdown-toggle" type="button" id="Gender" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Select Year
+          </button>
+          <div class="dropdown-menu" aria-labelledby="Gender">
+            <a class="dropdown-item" href="#">Male</a>
+            <a class="dropdown-item" href="#">Female</a>
+            <a class="dropdown-item" href="#">Others</a>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-xl-3 col-lg-3">
         <label for="RegistrationNumber">Registration Number</label>
         <input type="text" class="form-control" readonly id="RegistrationNumber">
       </div>
-
     </div>
-
-
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
