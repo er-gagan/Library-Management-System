@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
 # Create your views here.
@@ -68,5 +68,24 @@ def ViewAllBookPage(request):
 def ViewBooksByBranch(request):
     if request.method == 'POST':
         return render(request,"LMSapp/ViewBooksByBranch.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+
+def Student_Registration_Data(request):
+    if request.method == 'POST':
+        fname = request.POST['fname']
+        mname = request.POST['mname']
+        lname = request.POST['lname']
+        Phone1 = request.POST['Phone1']
+        Phone2 = request.POST['Phone2']
+        email = request.POST['email']
+        city = request.POST['city']
+        district = request.POST['district']
+        state = request.POST['state']
+        pin = request.POST['pin']
+        Current_Address = request.POST['Current_Address']
+        Permanent_Address = request.POST['Permanent_Address']
+        print(fname,mname,lname,Phone1,Phone2,email,city,district,state,pin,Current_Address,Permanent_Address)
+        return render(request,"LMSapp/StudentRegistrationPage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")

@@ -16,4 +16,6 @@ urlpatterns = [
     path('BookRegistrationPage',views.BookRegistrationPage),
     path('ViewAllBookPage',views.ViewAllBookPage),
     path('ViewBooksByBranch',views.ViewBooksByBranch),
+    
+    path('Student_Registration_Data',views.Student_Registration_Data),
 ]
