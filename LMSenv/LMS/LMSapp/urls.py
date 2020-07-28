@@ -18,4 +18,6 @@ urlpatterns = [
     path('ViewBooksByBranch',views.ViewBooksByBranch),
     
     path('Student_Registration_Data',views.Student_Registration_Data),
+    path('Book_Registration_Data',views.Book_Registration_Data),
+    path('Faculty_Registration_Data',views.Faculty_Registration_Data),
 ]
