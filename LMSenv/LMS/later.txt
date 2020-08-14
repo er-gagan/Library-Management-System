@@ -1,0 +1,2 @@
+student registration number
+find one student record exist or not [name or mobile]
