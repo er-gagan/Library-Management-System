@@ -1,7 +1,10 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.http import HttpResponse
+from LMSapp.models import Student_Registration,Faculty_Registration,Book_Registration
 
-# Create your views here.
+# username contact@rbmi
+# pwd contact@rbmi
+
 def home(request):
     return render(request,"LMSapp/home.html")
 
@@ -89,8 +92,7 @@ def Student_Registration_Data(request):
         Year = request.POST['Year']
         Branch = request.POST['Branch']
         Gender = request.POST['Gender']
-        
-        print(fname,mname,lname,Phone1,Phone2,email,city,district,state,pin,Current_Address,Permanent_Address,Course,Year,Branch,Gender)
+        Student_Registration(fname = fname,mname = mname,lname = lname,Phone1 = Phone1,Phone2 = Phone2,email = email,city = city,district = district,state = state,pin = pin,Current_Address = Current_Address,Permanent_Address = Permanent_Address,Course = Course,Year = Year,Branch = Branch,Gender = Gender).save()
         return render(request,"LMSapp/StudentRegistrationPage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
@@ -105,7 +107,7 @@ def Book_Registration_Data(request):
         Page = request.POST['Page']
         Price = request.POST['Price']
         BookBelongsCourse = request.POST['BookBelongsCourse']
-        print(BookID,BookName,Author1,Author2,Publisher,Page,Price,BookBelongsCourse)
+        Book_Registration(BookID = BookID,BookName = BookName,Author1 = Author1,Author2 = Author2,Publisher = Publisher,Page = Page,Price = Price,BookBelongsCourse = BookBelongsCourse).save()
         return render(request,"LMSapp/BookRegistrationPage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
@@ -126,8 +128,7 @@ def Faculty_Registration_Data(request):
         Permanent_Address = request.POST['Permanent_Address']
         Branch = request.POST['Branch']
         Gender = request.POST['Gender']
-        print(fname,mname,lname,Phone1,Phone2,email,city,district,state,pin,Current_Address,Permanent_Address,Branch,Gender)
+        Faculty_Registration(fname = fname,mname = mname,lname = lname,Phone1 = Phone1,Phone2 = Phone2,email = email,city = city,district = district,state = state,pin = pin,Current_Address = Current_Address,Permanent_Address = Permanent_Address,Branch = Branch,Gender = Gender).save()
         return render(request,"LMSapp/FacultyRegistrationPage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
-    
