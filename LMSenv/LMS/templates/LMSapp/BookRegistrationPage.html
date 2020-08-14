@@ -30,28 +30,25 @@
         <div class="form-row">
             <div class="form-group col-xl-4">
                 <label for="Page">Total Page</label>
-                <input type="text" class="form-control" id="Page" name="Page">                
+                <input type="text" class="form-control" id="Page" name="Page">
             </div>
             <div class=" form-group col-xl-4">
                 <label for="Price">Book Price</label>
                 <input type="text" class="form-control" id="Price" name="Price">
             </div>
+
             <div class="form-group col-xl-4">
                 <label for="BookBelongsCourse">Book Belongs to Course/Branch/Department</label>
-                <div class="dropdown">
-                    <button class="btn border border-secondary dropdown-toggle px-5" type="button"
-                        id="BookBelongsCourse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select Course/Branch/Department
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">MCA</a>
-                        <a class="dropdown-item" href="#">MBA</a>
-                        <a class="dropdown-item" href="#">Computer Science Engineer</a>
-                        <a class="dropdown-item" href="#">Mechanical Engineer</a>
-                        <a class="dropdown-item" href="#">Civil Engineer</a>
-                    </div>
-                </div>
+                <select class="form-control" id="BookBelongsCourse" name="BookBelongsCourse">
+                    <option hidden>Select Course/Branch/Department</option>
+                    <option>MCA</option>
+                    <option>MBA</option>
+                    <option>Computer Science Engineer</option>
+                    <option>Mechanical Engineer</option>
+                    <option>Civil Engineer</option>
+                </select>
             </div>
+            
         </div>
         <input type="submit" class="btn btn-primary mx-auto d-block btn-lg" value="Submit">
     </form>

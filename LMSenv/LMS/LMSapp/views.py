@@ -83,9 +83,14 @@ def Student_Registration_Data(request):
         district = request.POST['district']
         state = request.POST['state']
         pin = request.POST['pin']
-        Current_Address = request.POST['Current_Address']
-        Permanent_Address = request.POST['Permanent_Address']
-        print(fname,mname,lname,Phone1,Phone2,email,city,district,state,pin,Current_Address,Permanent_Address)
+        Current_Address = request.POST['CurrentAddress']
+        Permanent_Address = request.POST['PermanentAddress']
+        Course = request.POST['Course']
+        Year = request.POST['Year']
+        Branch = request.POST['Branch']
+        Gender = request.POST['Gender']
+        
+        print(fname,mname,lname,Phone1,Phone2,email,city,district,state,pin,Current_Address,Permanent_Address,Course,Year,Branch,Gender)
         return render(request,"LMSapp/StudentRegistrationPage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
@@ -99,7 +104,8 @@ def Book_Registration_Data(request):
         Publisher = request.POST['Publisher']
         Page = request.POST['Page']
         Price = request.POST['Price']
-        print(BookID,BookName,Author1,Author2,Publisher,Page,Price)
+        BookBelongsCourse = request.POST['BookBelongsCourse']
+        print(BookID,BookName,Author1,Author2,Publisher,Page,Price,BookBelongsCourse)
         return render(request,"LMSapp/BookRegistrationPage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
@@ -118,7 +124,9 @@ def Faculty_Registration_Data(request):
         pin = request.POST['pin']
         Current_Address = request.POST['Current_Address']
         Permanent_Address = request.POST['Permanent_Address']
-        print(fname,mname,lname,Phone1,Phone2,email,city,district,state,pin,Current_Address,Permanent_Address)
+        Branch = request.POST['Branch']
+        Gender = request.POST['Gender']
+        print(fname,mname,lname,Phone1,Phone2,email,city,district,state,pin,Current_Address,Permanent_Address,Branch,Gender)
         return render(request,"LMSapp/FacultyRegistrationPage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
