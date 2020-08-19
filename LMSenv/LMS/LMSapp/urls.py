@@ -20,4 +20,10 @@ urlpatterns = [
     path('Student_Registration_Data',views.Student_Registration_Data),
     path('Book_Registration_Data',views.Book_Registration_Data),
     path('Faculty_Registration_Data',views.Faculty_Registration_Data),
+    
+    path('BookIssueToStudent_Id_Check',views.BookIssueToStudent_Id_Check),
+    path('BookSubmitByStudent_Id_Check',views.BookSubmitByStudent_Id_Check),
+    
+    path('BookIssueToFaculty_id_check',views.BookIssueToFaculty_id_check),
+    path('BookSubmitByFaculty_id_check',views.BookSubmitByFaculty_id_check),
 ]

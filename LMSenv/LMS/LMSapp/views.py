@@ -132,3 +132,49 @@ def Faculty_Registration_Data(request):
         return render(request,"LMSapp/FacultyRegistrationPage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
+    
+def BookIssueToStudent_Id_Check(request):
+    if request.method == 'POST':
+        Student_Library_Registration_Number = request.POST['BookIssueToStudent']
+        if Student_Registration.objects.filter(Student_Registration_Number=Student_Library_Registration_Number):
+            Student_data = Student_Registration.objects.get(Student_Registration_Number=Student_Library_Registration_Number)
+            print(Student_data.fname,Student_data.mname,Student_data.lname,Student_data.Phone1,Student_data.Phone2,Student_data.email,Student_data.city,Student_data.district,Student_data.state,Student_data.pin,Student_data.Current_Address,Student_data.Permanent_Address,Student_data.Course,Student_data.Year,Student_data.Branch,Student_data.Gender)
+        else:
+            print("Registration Number not Exist")
+        return render(request,"LMSapp/BookIssueToStudent.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+    
+def BookSubmitByStudent_Id_Check(request):
+    if request.method == 'POST':
+        Student_Library_Registration_Number = request.POST['BookSubmitByStudent']
+        if Student_Registration.objects.filter(Student_Registration_Number=Student_Library_Registration_Number):
+            Student_data = Student_Registration.objects.get(Student_Registration_Number=Student_Library_Registration_Number)
+            print(Student_data.fname,Student_data.mname,Student_data.lname,Student_data.Phone1,Student_data.Phone2,Student_data.email,Student_data.city,Student_data.district,Student_data.state,Student_data.pin,Student_data.Current_Address,Student_data.Permanent_Address,Student_data.Course,Student_data.Year,Student_data.Branch,Student_data.Gender)
+        else:
+            print("Registration Number not Exist")
+        return render(request,"LMSapp/BookSubmitByStudent.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+    
+def BookIssueToFaculty_id_check(request):
+    if request.method == 'POST':
+        Faculty_Library_Registration_Number = request.POST['BookIssueToFaculty']
+        if Faculty_Registration.objects.filter(Faculty_Registration_Number=Faculty_Library_Registration_Number):
+            print("Faculty Registration Number is exist")
+        else:
+            print("Faculty Registration Number not Exist")
+        return render(request,"LMSapp/BookIssueToFaculty.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+    
+def BookSubmitByFaculty_id_check(request):
+    if request.method == 'POST':
+        Faculty_Library_Registration_Number = request.POST['BookSubmitByFaculty']
+        if Faculty_Registration.objects.filter(Faculty_Registration_Number=Faculty_Library_Registration_Number):
+            print("Faculty Registration Number is exist")
+        else:
+            print("Faculty Registration Number not Exist")
+        return render(request,"LMSapp/BookIssueToFaculty.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")

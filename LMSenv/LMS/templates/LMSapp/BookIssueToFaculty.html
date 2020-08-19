@@ -4,11 +4,11 @@
 <div class="container m-4">
   <h3>Please Enter Carefully <b>Faculty Library Registration Number</b></h3>
   <hr>
-  <form action="#" method="POST">
+  <form action="BookIssueToFaculty_id_check" method="POST">
     {% csrf_token %}
     <div class="form-group">
       <label for="RegNumber">Enter Faculty Registration Number</label>
-      <input type="text" class="form-control" id="RegNumber" placeholder="Faculty Library Registration Number">
+      <input type="text" class="form-control" id="RegNumber" name="BookIssueToFaculty" placeholder="Faculty Library Registration Number">
     </div>
     <button type="submit" class="btn btn-primary mx-auto d-block">Check</button>
   </form>
