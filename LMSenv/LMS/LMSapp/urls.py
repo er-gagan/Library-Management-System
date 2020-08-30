@@ -26,4 +26,8 @@ urlpatterns = [
     
     path('BookIssueToFaculty_id_check',views.BookIssueToFaculty_id_check),
     path('BookSubmitByFaculty_id_check',views.BookSubmitByFaculty_id_check),
+    
+    path('BookIssueToStudent_BookID',views.BookIssueToStudent_BookID),
+    path('BookIssueToStudent_BookIDCheck',views.BookIssueToStudent_BookIDCheck),
+    
 ]

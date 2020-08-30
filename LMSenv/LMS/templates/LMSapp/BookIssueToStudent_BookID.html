@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container m-4">
+    <h3>Please Enter Carefully <b>Book ID/Number</b></h3>
+    <hr>
+    <form action="BookIssueToStudent_BookIDCheck" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="BookID">Enter Book ID/Number</label>
+            <input type="text" class="form-control" id="BookID" name="BookIssueToStudent_BookIDCheck"
+                placeholder="Book ID/Number">
+        </div>
+        <button type="submit" class="btn btn-primary mx-auto d-block">Check</button>
+    </form>
+</div>
+{% endblock body %}

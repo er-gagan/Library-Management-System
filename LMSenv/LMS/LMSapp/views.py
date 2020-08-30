@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from LMSapp.models import Student_Registration,Faculty_Registration,Book_Registration
 
@@ -138,10 +138,11 @@ def BookIssueToStudent_Id_Check(request):
         Student_Library_Registration_Number = request.POST['BookIssueToStudent']
         if Student_Registration.objects.filter(Student_Registration_Number=Student_Library_Registration_Number):
             Student_data = Student_Registration.objects.get(Student_Registration_Number=Student_Library_Registration_Number)
-            print(Student_data.fname,Student_data.mname,Student_data.lname,Student_data.Phone1,Student_data.Phone2,Student_data.email,Student_data.city,Student_data.district,Student_data.state,Student_data.pin,Student_data.Current_Address,Student_data.Permanent_Address,Student_data.Course,Student_data.Year,Student_data.Branch,Student_data.Gender)
+            context={'RegNo':Student_data.Student_Registration_Number,'fname':Student_data.fname,'mname':Student_data.mname,'lname':Student_data.lname,'Phone1':Student_data.Phone1,'Phone2':Student_data.Phone2,'email':Student_data.email,'city':Student_data.city,'district':Student_data.district,'state':Student_data.state,'pin':Student_data.pin,'Current_Address':Student_data.Current_Address,'Permanent_Address':Student_data.Permanent_Address,'Course':Student_data.Course,'Year':Student_data.Year,'Branch':Student_data.Branch,'Gender':Student_data.Gender}
+            return render(request,"LMSapp/BookIssuedToStudentDetails.html",context)
         else:
             print("Registration Number not Exist")
-        return render(request,"LMSapp/BookIssueToStudent.html")
+            return render(request,"LMSapp/BookIssueToStudent.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
     
@@ -176,5 +177,32 @@ def BookSubmitByFaculty_id_check(request):
         else:
             print("Faculty Registration Number not Exist")
         return render(request,"LMSapp/BookIssueToFaculty.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+    
+def BookIssueToStudent_BookID(request):
+    if request.method == 'POST':
+        return render(request,"LMSapp/BookIssueToStudent_BookID.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+    
+def BookIssueToStudent_BookIDCheck(request):
+    if request.method == 'POST':
+        BookId = request.POST['BookIssueToStudent_BookIDCheck']
+        if Book_Registration.objects.filter(BookID__iexact=BookId):
+            Book = Book_Registration.objects.get(BookID__iexact=BookId)
+            
+            from datetime import datetime
+            currentDT = datetime.now()
+            day = str(currentDT.day)
+            month = currentDT.strftime("%B")
+            year = str(currentDT.year)
+            date = day+'/'+month+'/'+year
+            
+            print(Book.BookID,Book.BookName,Book.Author1,Book.Author2,Book.Publisher,Book.Page,Book.Price,Book.BookBelongsCourse,date)
+            print("Book Issued To Student")
+        else:
+            print("Book ID Not Exist")
+        return redirect('/')
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
