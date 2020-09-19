@@ -42,7 +42,7 @@
         {% csrf_token %}
         <div class="form-group">
             <label for="BookID">Enter Book ID/Number</label>
-            <input type="text" class="form-control" id="BookID" name="BookIssueToStudent_BookIDCheck"
+            <input type="text" class="form-control" value="{{BookID}}" id="BookID" name="BookIssueToStudent_BookIDCheck"
                 placeholder="Book ID/Number">
         </div>
         <button type="submit" class="btn btn-primary mx-auto d-block">Check</button>
@@ -121,5 +121,11 @@
             </tr>
         </table>
     </div>
+</div>
+<div class="container d-flex justify-content-center my-3">
+    <form action="/BookIssued" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Book Issue" class="btn btn-primary btn-lg">
+    </form>
 </div>
 {% endblock body %}

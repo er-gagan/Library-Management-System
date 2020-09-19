@@ -89,3 +89,6 @@ class Book_Issue_Student(models.Model):
     BookBelongsCourse = models.CharField(max_length=50)
     # =================book issue date infor===============
     Book_Issue_To_Student_Date = models.CharField(max_length=30)
+    
+    def __str__(self):
+        return self.fname+" "+self.BookName+" "+self.Book_Issue_To_Student_Date

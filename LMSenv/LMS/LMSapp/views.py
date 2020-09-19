@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from LMSapp.models import Student_Registration,Faculty_Registration,Book_Registration
+from LMSapp.models import Book_Issue_Student, Student_Registration,Faculty_Registration,Book_Registration
 
 # username contact@rbmi
 # pwd contact@rbmi
@@ -234,11 +234,57 @@ def BookIssueToStudent_BookIDCheck(request):
             Gender = request.session['Gender']
             RegNumber = request.session['RegNumber']
             
+            request.session['BookID'] = Book.BookID
+            request.session['BookName'] = Book.BookName
+            request.session['Author1'] = Book.Author1
+            request.session['Author2'] = Book.Author2
+            request.session['Publisher'] = Book.Publisher
+            request.session['Page'] = Book.Page
+            request.session['Price'] = Book.Price
+            request.session['BookBelongsCourse'] = Book.BookBelongsCourse
+            request.session['date'] = date
+            
             context = {'fname':fname,'mname':mname,'lname':lname,'Phone1':Phone1,'Phone2':Phone2,'email':email,'city':city,'district':district,'state':state,'pin':pin,'Current_Address':Current_Address,'Permanent_Address':Permanent_Address,'Course':Course,'Year':Year,'Branch':Branch,'Gender':Gender,'RegNumber':RegNumber,'BookID':Book.BookID,'BookName':Book.BookName,'Author1':Book.Author1,'Author2':Book.Author2,'Publisher':Book.Publisher,'Page':Book.Page,'Price':Book.Price,'BookBelongsCourse':Book.BookBelongsCourse,'date':date}
             
-            # print("Book Issued To Student")
+            return render(request,"LMSapp/BookIssueToStudent_BookID.html",context)
         else:
             print("Book ID Not Exist")
-        return render(request,"LMSapp/BookIssueToStudent_BookID.html",context)
+            return redirect("/")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+    
+def BookIssued(request):
+    if request.method == 'POST':
+        fname = request.session['fname']
+        mname = request.session['mname']
+        lname = request.session['lname']
+        Phone1 = request.session['Phone1']
+        Phone2 = request.session['Phone2']
+        email = request.session['email']
+        city = request.session['city']
+        district = request.session['district']
+        state = request.session['state']
+        pin = request.session['pin']
+        Current_Address = request.session['Current_Address']
+        Permanent_Address = request.session['Permanent_Address']
+        Course = request.session['Course']
+        Year = request.session['Year']
+        Branch = request.session['Branch']
+        Gender = request.session['Gender']
+        RegNumber = request.session['RegNumber']
+        
+        BookID = request.session['BookID']
+        BookName = request.session['BookName']
+        Author1 = request.session['Author1']
+        Author2 = request.session['Author2']
+        Publisher = request.session['Publisher']
+        Page = request.session['Page']
+        Price = request.session['Price']
+        BookBelongsCourse = request.session['BookBelongsCourse']
+        date = request.session['date']
+
+        Book_Issue_Student(Student_Registration_Number = RegNumber, fname = fname, mname = mname, lname = lname, Phone1 = Phone1, Phone2 = Phone2, email = email, city = city, district = district, state = state, pin = pin, Current_Address = Current_Address, Permanent_Address = Permanent_Address, Course = Course, Year = Year, Branch = Branch, Gender = Gender, BookID = BookID, BookName = BookName, Author1 = Author1, Author2 = Author2, Publisher = Publisher, Page = Page, Price = Price, BookBelongsCourse = BookBelongsCourse, Book_Issue_To_Student_Date = date).save()
+        print("Book Issued to student")
+        return redirect('/')
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
