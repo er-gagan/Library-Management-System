@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.http import HttpResponse
 from LMSapp.models import Student_Registration,Faculty_Registration,Book_Registration
 
@@ -182,6 +182,23 @@ def BookSubmitByFaculty_id_check(request):
     
 def BookIssueToStudent_BookID(request):
     if request.method == 'POST':
+        request.session['fname'] = request.POST['fname']
+        request.session['mname'] = request.POST['mname']
+        request.session['lname'] = request.POST['lname']
+        request.session['Phone1'] = request.POST['Phone1']
+        request.session['Phone2'] = request.POST['Phone2']
+        request.session['email'] = request.POST['email']
+        request.session['city'] = request.POST['city']
+        request.session['district'] = request.POST['district']
+        request.session['state'] = request.POST['state']
+        request.session['pin'] = request.POST['pin']
+        request.session['Current_Address'] = request.POST['CurrentAddress']
+        request.session['Permanent_Address'] = request.POST['PermanentAddress']
+        request.session['Course'] = request.POST['Course']
+        request.session['Year'] = request.POST['Year']
+        request.session['Branch'] = request.POST['Branch']
+        request.session['Gender'] = request.POST['Gender']
+        request.session['RegNumber'] = request.POST['regNumber']
         return render(request,"LMSapp/BookIssueToStudent_BookID.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
@@ -199,10 +216,29 @@ def BookIssueToStudent_BookIDCheck(request):
             year = str(currentDT.year)
             date = day+'/'+month+'/'+year
             
-            print(Book.BookID,Book.BookName,Book.Author1,Book.Author2,Book.Publisher,Book.Page,Book.Price,Book.BookBelongsCourse,date)
-            print("Book Issued To Student")
+            fname = request.session['fname']
+            mname = request.session['mname']
+            lname = request.session['lname']
+            Phone1 = request.session['Phone1']
+            Phone2 = request.session['Phone2']
+            email = request.session['email']
+            city = request.session['city']
+            district = request.session['district']
+            state = request.session['state']
+            pin = request.session['pin']
+            Current_Address = request.session['Current_Address']
+            Permanent_Address = request.session['Permanent_Address']
+            Course = request.session['Course']
+            Year = request.session['Year']
+            Branch = request.session['Branch']
+            Gender = request.session['Gender']
+            RegNumber = request.session['RegNumber']
+            
+            context = {'fname':fname,'mname':mname,'lname':lname,'Phone1':Phone1,'Phone2':Phone2,'email':email,'city':city,'district':district,'state':state,'pin':pin,'Current_Address':Current_Address,'Permanent_Address':Permanent_Address,'Course':Course,'Year':Year,'Branch':Branch,'Gender':Gender,'RegNumber':RegNumber,'BookID':Book.BookID,'BookName':Book.BookName,'Author1':Book.Author1,'Author2':Book.Author2,'Publisher':Book.Publisher,'Page':Book.Page,'Price':Book.Price,'BookBelongsCourse':Book.BookBelongsCourse,'date':date}
+            
+            # print("Book Issued To Student")
         else:
             print("Book ID Not Exist")
-        return redirect('/')
+        return render(request,"LMSapp/BookIssueToStudent_BookID.html",context)
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
