@@ -2,16 +2,132 @@
 
 
 {% block body %}
+<style>
+  table {
+    margin-top: 10px;
+  }
+
+  .customers {
+    text-align: center;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    font-weight: bolder;
+  }
+
+  .customers td,
+  .customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  .customers tr:nth-child(even) {
+    background-color: #f5c2c2;
+  }
+
+  .customers tr:hover {
+    background-color: rgb(243, 156, 156);
+  }
+
+  .customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #ef5c55;
+    color: white;
+  }
+</style>
 <div class="container m-4">
-    <h3>Please Enter Carefully <b>Student Library Registration Number</b></h3>
-    <hr>
-<form action="BookSubmitByStudent_Id_Check" method="POST">
+  <h3>Please Enter Carefully <b>Student Library Registration Number</b></h3>
+  <hr>
+  <form action="BookSubmitByStudent_Id_Check" method="POST">
     {% csrf_token %}
     <div class="form-group">
-        <label for="RegNumber">Enter Student Registration Number</label>
-        <input type="text" class="form-control" id="RegNumber" name="BookSubmitByStudent" placeholder="Student Library Registration Number">
-      </div>
+      <label for="RegNumber">Enter Student Registration Number</label>
+      <input type="text" class="form-control" id="RegNumber" value="{{Student_Registration_Number}}"
+        name="BookSubmitByStudent" placeholder="Student Library Registration Number">
+    </div>
     <button type="submit" class="btn btn-primary mx-auto d-block">Check</button>
+  </form>
+
+  <div class="customers">
+    <table>
+      <tr>
+        <th>Student Registration Number</th>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>Phone 1</th>
+        <th>Phone 2</th>
+        <th>Email</th>
+        <th>City</th>
+      </tr>
+      <tr>
+        <td>{{Student_Registration_Number}}</td>
+        <td>{{fname}}</td>
+        <td>{{mname}}</td>
+        <td>{{lname}}</td>
+        <td>{{Phone1}}</td>
+        <td>{{Phone2}}</td>
+        <td>{{email}}</td>
+        <td>{{city}}</td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <th>District</th>
+        <th>State</th>
+        <th>Pin</th>
+        <th>Current Address</th>
+        <th>Permanent Address</th>
+        <th>Course</th>
+        <th>Year</th>
+        <th>Branch</th>
+        <th>Gender</th>
+      </tr>
+      <tr>
+        <td>{{district}}</td>
+        <td>{{state}}</td>
+        <td>{{pin}}</td>
+        <td>{{Current_Address}}</td>
+        <td>{{Permanent_Address}}</td>
+        <td>{{Course}}</td>
+        <td>{{Year}}</td>
+        <td>{{Branch}}</td>
+        <td>{{Gender}}</td>
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <th>Book ID</th>
+        <th>Name</th>
+        <th>Author 1</th>
+        <th>Author 2</th>
+        <th>Publisher</th>
+        <th>Page</th>
+        <th>Price</th>
+        <th>Book Belongs To Course</th>
+        <th>Date</th>
+      </tr>
+      <tr>
+        <td>{{BookID}}</td>
+        <td>{{BookName}}</td>
+        <td>{{Author1}}</td>
+        <td>{{Author2}}</td>
+        <td>{{Publisher}}</td>
+        <td>{{Page}}</td>
+        <td>{{Price}}</td>
+        <td>{{BookBelongsCourse}}</td>
+        <td>{{Book_Issue_To_Student_Date}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="container d-flex justify-content-center my-3">
+  <form action="/BookSubmitted" method="post">
+      {% csrf_token %}
+      <input type="submit" value="Book Submit" class="btn btn-primary btn-lg">
   </form>
 </div>
 {% endblock body %}

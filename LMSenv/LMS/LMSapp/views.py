@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from LMSapp.models import Book_Issue_Student, Student_Registration,Faculty_Registration,Book_Registration
@@ -149,12 +150,14 @@ def BookIssueToStudent_Id_Check(request):
 def BookSubmitByStudent_Id_Check(request):
     if request.method == 'POST':
         Student_Library_Registration_Number = request.POST['BookSubmitByStudent']
-        if Student_Registration.objects.filter(Student_Registration_Number=Student_Library_Registration_Number):
-            Student_data = Student_Registration.objects.get(Student_Registration_Number=Student_Library_Registration_Number)
-            print(Student_data.fname,Student_data.mname,Student_data.lname,Student_data.Phone1,Student_data.Phone2,Student_data.email,Student_data.city,Student_data.district,Student_data.state,Student_data.pin,Student_data.Current_Address,Student_data.Permanent_Address,Student_data.Course,Student_data.Year,Student_data.Branch,Student_data.Gender)
+        if Book_Issue_Student.objects.filter(Student_Registration_Number=Student_Library_Registration_Number):
+            Data = Book_Issue_Student.objects.get(Student_Registration_Number=Student_Library_Registration_Number)
+            request.session['Student_Library_Registration_Number'] = Student_Library_Registration_Number
+            context = {'Student_Registration_Number':Data.Student_Registration_Number, 'fname':Data.fname, 'mname':Data.mname, 'lname':Data.lname, 'Phone1':Data.Phone1, 'Phone2':Data.Phone2, 'email':Data.email, 'city':Data.city, 'district':Data.district, 'state':Data.state, 'pin':Data.pin, 'Current_Address':Data.Current_Address, 'Permanent_Address':Data.Permanent_Address, 'Course':Data.Course, 'Year':Data.Year, 'Branch':Data.Branch, 'Gender':Data.Gender, 'BookID':Data.BookID, 'BookName':Data.BookName, 'Author1':Data.Author1, 'Author2':Data.Author2, 'Publisher':Data.Publisher, 'Page':Data.Page, 'Price':Data.Price, 'BookBelongsCourse':Data.BookBelongsCourse, 'Book_Issue_To_Student_Date':Data.Book_Issue_To_Student_Date}
+            return render(request,"LMSapp/BookSubmitByStudent.html",context)
         else:
             print("Registration Number not Exist")
-        return render(request,"LMSapp/BookSubmitByStudent.html")
+            return redirect('/')
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
     
@@ -285,6 +288,15 @@ def BookIssued(request):
 
         Book_Issue_Student(Student_Registration_Number = RegNumber, fname = fname, mname = mname, lname = lname, Phone1 = Phone1, Phone2 = Phone2, email = email, city = city, district = district, state = state, pin = pin, Current_Address = Current_Address, Permanent_Address = Permanent_Address, Course = Course, Year = Year, Branch = Branch, Gender = Gender, BookID = BookID, BookName = BookName, Author1 = Author1, Author2 = Author2, Publisher = Publisher, Page = Page, Price = Price, BookBelongsCourse = BookBelongsCourse, Book_Issue_To_Student_Date = date).save()
         print("Book Issued to student")
+        return redirect('/')
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+    
+def BookSubmitted(request):
+    if request.method == 'POST':
+        stRegNo = request.session['Student_Library_Registration_Number']
+        Book_Issue_Student.objects.filter(Student_Registration_Number=stRegNo).delete()
+        print('Book has successfully subitted by student')
         return redirect('/')
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")

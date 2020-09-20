@@ -30,5 +30,6 @@ urlpatterns = [
     path('BookIssueToStudent_BookID',views.BookIssueToStudent_BookID),
     path('BookIssueToStudent_BookIDCheck',views.BookIssueToStudent_BookIDCheck),
     path('BookIssued',views.BookIssued),
+    path('BookSubmitted',views.BookSubmitted),
     
 ]
