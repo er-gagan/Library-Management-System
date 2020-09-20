@@ -1,4 +1,3 @@
-from django.http import request
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from LMSapp.models import Book_Issue_Student, Student_Registration,Faculty_Registration,Book_Registration

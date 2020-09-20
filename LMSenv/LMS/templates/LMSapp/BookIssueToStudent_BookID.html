@@ -12,12 +12,13 @@
         border-collapse: collapse;
         width: 100%;
         font-weight: bolder;
+        overflow-x: auto;
     }
 
     .customers td,
     .customers th {
         border: 1px solid #ddd;
-        padding: 8px;
+        padding: 5px;
     }
 
     .customers tr:nth-child(even) {
@@ -29,13 +30,13 @@
     }
 
     .customers th {
-        padding-top: 12px;
-        padding-bottom: 12px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         background-color: #ef5c55;
         color: white;
     }
 </style>
-<div class="container m-4">
+<div class="container my-4">
     <h3>Please Enter Carefully <b>Book ID/Number</b></h3>
     <hr>
     <form action="BookIssueToStudent_BookIDCheck" method="POST">
