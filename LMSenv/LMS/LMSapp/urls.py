@@ -6,6 +6,7 @@ urlpatterns = [
     path('AdminLoginPage',views.AdminLoginPage),
     path('StudentLoginPage',views.StudentLoginPage),
     path('AdminWelcomePage',views.AdminWelcomePage),
+    path('logout',views.LogOut),
     
     path('StudentRegistrationPage',views.StudentRegistrationPage),
     path('BookIssueToStudent',views.BookIssueToStudent),

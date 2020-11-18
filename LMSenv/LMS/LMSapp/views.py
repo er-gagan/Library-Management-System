@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from LMSapp.models import Book_Issue_Student, Student_Registration,Faculty_Registration,Book_Registration
-
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
+from django.contrib.auth import authenticate,login,logout
 # username contact@rbmi
 # pwd contact@rbmi
 
@@ -14,12 +16,28 @@ def AdminLoginPage(request):
 def StudentLoginPage(request):
     return render(request,"LMSapp/StudentLoginPage.html")
 
+@csrf_exempt
 def AdminWelcomePage(request):
     if request.method == 'POST':
-        return render(request,"LMSapp/AdminWelcomePage.html")
+        loginusername = request.POST['username']
+        loginpassword = request.POST['password']
+        user = authenticate(username=loginusername,password=loginpassword)
+        if user is not None:
+            login(request,user)
+            messages.success(request,"Successfully Logged In")
+            return render(request,"LMSapp/AdminWelcomePage.html")
+        else:
+            messages.error(request,"Invallid Credentials, Please Try Again")
+            return render(request,"LMSapp/AdminLoginPage.html")
     else:
-        return HttpResponse("<h1>404 - Not Found :(</h1>")
-    
+        return HttpResponse("<h1>404 - Not Found</h1>")
+
+@csrf_exempt
+def LogOut(request):
+    logout(request)
+    messages.success(request,"Successfully Logged Out")
+    return redirect("/")
+
 def StudentRegistrationPage(request):
     if request.method == 'POST':
         return render(request,"LMSapp/StudentRegistrationPage.html")
