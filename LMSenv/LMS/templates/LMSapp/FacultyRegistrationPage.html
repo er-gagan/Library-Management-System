@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block Loggout %}
+<a href="/logout" class="btn btn-success">Logout</a>     
+{% endblock Loggout %}
 {% load static %}
 {% block body %}
 <script src="{% static 'js/StudentRegistrationPage.js' %}"></script>

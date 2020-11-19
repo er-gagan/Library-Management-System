@@ -94,14 +94,14 @@ def ViewBooksByBranch(request):
 
 def Student_Registration_Data(request):
     if request.method == 'POST':
-        fname = request.POST['fname']
-        mname = request.POST['mname']
-        lname = request.POST['lname']
+        fname = request.POST['fname'].upper()
+        mname = request.POST['mname'].upper()
+        lname = request.POST['lname'].upper()
         Phone1 = request.POST['Phone1']
         Phone2 = request.POST['Phone2']
         email = request.POST['email']
-        city = request.POST['city']
-        district = request.POST['district']
+        city = request.POST['city'].capitalize()
+        district = request.POST['district'].capitalize()
         state = request.POST['state']
         pin = request.POST['pin']
         Current_Address = request.POST['CurrentAddress']
@@ -110,8 +110,31 @@ def Student_Registration_Data(request):
         Year = request.POST['Year']
         Branch = request.POST['Branch']
         Gender = request.POST['Gender']
-        Student_Registration(fname = fname,mname = mname,lname = lname,Phone1 = Phone1,Phone2 = Phone2,email = email,city = city,district = district,state = state,pin = pin,Current_Address = Current_Address,Permanent_Address = Permanent_Address,Course = Course,Year = Year,Branch = Branch,Gender = Gender).save()
-        return render(request,"LMSapp/StudentRegistrationPage.html")
+        if Phone1 == Phone2:
+            messages.error(request,"Please enter different phone number")
+            return render(request,"LMSapp/StudentRegistrationPage.html")    
+        elif Student_Registration.objects.filter(fname__iexact = fname):
+            if Student_Registration.objects.filter(Phone1__iexact = Phone1):
+                messages.error(request,"Record already exist")
+                return render(request,"LMSapp/StudentRegistrationPage.html")
+            else:
+                Student_Registration(fname = fname,mname = mname,lname = lname,Phone1 = Phone1,Phone2 = Phone2,email = email,city = city,district = district,state = state,pin = pin,Current_Address = Current_Address,Permanent_Address = Permanent_Address,Course = Course,Year = Year,Branch = Branch,Gender = Gender).save()
+                obj = Student_Registration.objects.filter(Phone1__iexact = Phone1)
+                reg_Num = None
+                for i in obj:
+                    reg_Num = i.Student_Registration_Number
+                msg = "Student registered successfully, Name: "+fname+", Registration Number: "+str(reg_Num)
+                messages.success(request,msg)
+                return render(request,"LMSapp/StudentRegistrationPage.html")
+        else:
+            Student_Registration(fname = fname,mname = mname,lname = lname,Phone1 = Phone1,Phone2 = Phone2,email = email,city = city,district = district,state = state,pin = pin,Current_Address = Current_Address,Permanent_Address = Permanent_Address,Course = Course,Year = Year,Branch = Branch,Gender = Gender).save()
+            obj = Student_Registration.objects.filter(Phone1__iexact = Phone1)
+            reg_Num = None
+            for i in obj:
+                reg_Num = i.Student_Registration_Number
+            msg = "Student registered successfully, Name: "+fname+", Registration Number: "+str(reg_Num)
+            messages.success(request,msg)
+            return render(request,"LMSapp/StudentRegistrationPage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
     
