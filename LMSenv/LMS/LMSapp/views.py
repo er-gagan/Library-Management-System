@@ -245,7 +245,7 @@ def BookIssueToStudent_BookID(request):
         return render(request,"LMSapp/BookIssueToStudent_BookID.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
-    
+@csrf_exempt    
 def BookIssueToStudent_BookIDCheck(request):
     if request.method == 'POST':
         BookId = request.POST['BookIssueToStudent_BookIDCheck']
@@ -291,8 +291,8 @@ def BookIssueToStudent_BookIDCheck(request):
             
             return render(request,"LMSapp/BookIssueToStudent_BookID.html",context)
         else:
-            print("Book ID Not Exist")
-            return redirect("/")
+            messages.error(request,"Book id doesn't exist")
+            return render(request,"LMSapp/AdminWelcomePage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
     
@@ -326,9 +326,12 @@ def BookIssued(request):
         BookBelongsCourse = request.session['BookBelongsCourse']
         date = request.session['date']
 
-        Book_Issue_Student(Student_Registration_Number = RegNumber, fname = fname, mname = mname, lname = lname, Phone1 = Phone1, Phone2 = Phone2, email = email, city = city, district = district, state = state, pin = pin, Current_Address = Current_Address, Permanent_Address = Permanent_Address, Course = Course, Year = Year, Branch = Branch, Gender = Gender, BookID = BookID, BookName = BookName, Author1 = Author1, Author2 = Author2, Publisher = Publisher, Page = Page, Price = Price, BookBelongsCourse = BookBelongsCourse, Book_Issue_To_Student_Date = date).save()
-        print("Book Issued to student")
-        return redirect('/')
+        if Book_Issue_Student.objects.filter(BookID__iexact = BookID):
+            messages.error(request,"This book id already exist some particular student")
+        else:
+            Book_Issue_Student(Student_Registration_Number = RegNumber, fname = fname, mname = mname, lname = lname, Phone1 = Phone1, Phone2 = Phone2, email = email, city = city, district = district, state = state, pin = pin, Current_Address = Current_Address, Permanent_Address = Permanent_Address, Course = Course, Year = Year, Branch = Branch, Gender = Gender, BookID = BookID, BookName = BookName, Author1 = Author1, Author2 = Author2, Publisher = Publisher, Page = Page, Price = Price, BookBelongsCourse = BookBelongsCourse, Book_Issue_To_Student_Date = date).save()
+            messages.success(request,"Book has successfully issued to student")
+        return render(request,"LMSapp/AdminWelcomePage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
     

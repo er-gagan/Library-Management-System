@@ -79,7 +79,7 @@ class Book_Issue_Student(models.Model):
     Branch = models.CharField(max_length=50)
     Gender = models.CharField(max_length=10)
     # =========book info=============
-    BookID = models.CharField(primary_key=True, max_length=20)
+    BookID = models.CharField(max_length=20)
     BookName = models.CharField(max_length=50)
     Author1 = models.CharField(max_length=100)
     Author2 = models.CharField(max_length=100)
