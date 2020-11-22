@@ -187,16 +187,15 @@ def BookIssueToStudent_Id_Check(request):
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
     
+@csrf_exempt
 def BookSubmitByStudent_Id_Check(request):
     if request.method == 'POST':
         Student_Library_Registration_Number = request.POST['BookSubmitByStudent']
         if Book_Issue_Student.objects.filter(Student_Registration_Number=Student_Library_Registration_Number):
-            Data = Book_Issue_Student.objects.get(Student_Registration_Number=Student_Library_Registration_Number)
-            request.session['Student_Library_Registration_Number'] = Student_Library_Registration_Number
-            context = {'Student_Registration_Number':Data.Student_Registration_Number, 'fname':Data.fname, 'mname':Data.mname, 'lname':Data.lname, 'Phone1':Data.Phone1, 'Phone2':Data.Phone2, 'email':Data.email, 'city':Data.city, 'district':Data.district, 'state':Data.state, 'pin':Data.pin, 'Current_Address':Data.Current_Address, 'Permanent_Address':Data.Permanent_Address, 'Course':Data.Course, 'Year':Data.Year, 'Branch':Data.Branch, 'Gender':Data.Gender, 'BookID':Data.BookID, 'BookName':Data.BookName, 'Author1':Data.Author1, 'Author2':Data.Author2, 'Publisher':Data.Publisher, 'Page':Data.Page, 'Price':Data.Price, 'BookBelongsCourse':Data.BookBelongsCourse, 'Book_Issue_To_Student_Date':Data.Book_Issue_To_Student_Date}
-            return render(request,"LMSapp/BookSubmitByStudent.html",context)
+            Data = Book_Issue_Student.objects.filter(Student_Registration_Number=Student_Library_Registration_Number)
+            return render(request,"LMSapp/BookSubmitByStudent.html",{'Data':Data})
         else:
-            print("Registration Number not Exist")
+            messages.error(request,"Registration Number not Exist")
             return redirect('/')
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
@@ -245,6 +244,7 @@ def BookIssueToStudent_BookID(request):
         return render(request,"LMSapp/BookIssueToStudent_BookID.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
+
 @csrf_exempt    
 def BookIssueToStudent_BookIDCheck(request):
     if request.method == 'POST':

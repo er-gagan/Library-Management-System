@@ -1,136 +1,130 @@
 {% extends "base.html" %}
 {% block Loggout %}
-<a href="/logout" class="btn btn-success">Logout</a>     
+<a href="/logout" class="btn btn-success">Logout</a>
 {% endblock Loggout %}
 {% load static %}
 {% block body %}
-<style>
-  table {
-    margin-top: 10px;
-  }
-
-  .customers {
-    text-align: center;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    font-weight: bolder;
-    overflow-x: auto;
-  }
-
-  .customers td,
-  .customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-
-  .customers tr:nth-child(even) {
-    background-color: #f5c2c2;
-  }
-
-  .customers tr:hover {
-    background-color: rgb(243, 156, 156);
-  }
-
-  .customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background-color: #ef5c55;
-    color: white;
-  }
-</style>
 <div class="container my-4">
-  <h3>Please Enter Carefully <b>Student Library Registration Number</b></h3>
-  <hr>
-  <form action="BookSubmitByStudent_Id_Check" method="POST">
-    {% csrf_token %}
-    <div class="form-group">
-      <label for="RegNumber">Enter Student Registration Number</label>
-      <input type="text" class="form-control" id="RegNumber" value="{{Student_Registration_Number}}"
-        name="BookSubmitByStudent" placeholder="Student Library Registration Number">
+    <h3>Please Enter Carefully <b>Student Library Registration Number</b></h3>
+    <hr>
+    <form action="BookSubmitByStudent_Id_Check" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="RegNumber">Enter Student Registration Number</label>
+            <input type="text" class="form-control" id="RegNumber" value="{{Data.0.Student_Registration_Number}}"
+                name="BookSubmitByStudent" placeholder="Student Library Registration Number">
+        </div>
+        <button type="submit" class="btn btn-primary mx-auto d-block">Check</button>
+    </form>
+</div>
+<div class="container">
+    <div class="text-center">
+        <h3>Student Information</h3>
     </div>
-    <button type="submit" class="btn btn-primary mx-auto d-block">Check</button>
-  </form>
-
-  <div class="customers">
-    <table>
-      <tr>
-        <th>Student Registration Number</th>
-        <th>First Name</th>
-        <th>Middle Name</th>
-        <th>Last Name</th>
-        <th>Phone 1</th>
-        <th>Phone 2</th>
-        <th>Email</th>
-        <th>City</th>
-      </tr>
-      <tr>
-        <td>{{Student_Registration_Number}}</td>
-        <td>{{fname}}</td>
-        <td>{{mname}}</td>
-        <td>{{lname}}</td>
-        <td>{{Phone1}}</td>
-        <td>{{Phone2}}</td>
-        <td>{{email}}</td>
-        <td>{{city}}</td>
-      </tr>
+    <table class="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Student Registration Number</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Phone 1</th>
+                <th>Phone 2</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>District</th>
+                <th>State</th>
+                <th>Pin</th>
+                <th>Current Address</th>
+                <th>Permanent Address</th>
+                <th>Course</th>
+                <th>Year</th>
+                <th>Branch</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{Data.0.Student_Registration_Number}}</td>
+                <td>{{Data.0.fname}}</td>
+                <td>{{Data.0.mname}}</td>
+                <td>{{Data.0.lname}}</td>
+                <td>{{Data.0.Phone1}}</td>
+                <td>{{Data.0.Phone2}}</td>
+                <td>{{Data.0.email}}</td>
+                <td>{{Data.0.city}}</td>
+                <td>{{Data.0.district}}</td>
+                <td>{{Data.0.state}}</td>
+                <td>{{Data.0.pin}}</td>
+                <td>{{Data.0.Current_Address}}</td>
+                <td>{{Data.0.Permanent_Address}}</td>
+                <td>{{Data.0.Course}}</td>
+                <td>{{Data.0.Year}}</td>
+                <td>{{Data.0.Branch}}</td>
+                <td>{{Data.0.Gender}}</td>
+            </tr>
+        </tbody>
     </table>
-
-    <table>
-      <tr>
-        <th>District</th>
-        <th>State</th>
-        <th>Pin</th>
-        <th>Current Address</th>
-        <th>Permanent Address</th>
-        <th>Course</th>
-        <th>Year</th>
-        <th>Branch</th>
-        <th>Gender</th>
-      </tr>
-      <tr>
-        <td>{{district}}</td>
-        <td>{{state}}</td>
-        <td>{{pin}}</td>
-        <td>{{Current_Address}}</td>
-        <td>{{Permanent_Address}}</td>
-        <td>{{Course}}</td>
-        <td>{{Year}}</td>
-        <td>{{Branch}}</td>
-        <td>{{Gender}}</td>
-      </tr>
+    <div class="text-center mt-3">
+        <h3>Book Information</h3>
+    </div>
+    <table class="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Book ID</th>
+                <th>Name</th>
+                <th>Author 1</th>
+                <th>Author 2</th>
+                <th>Publisher</th>
+                <th>Page</th>
+                <th>Price</th>
+                <th>Book Belongs To Course</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in Data %}
+            <tr>
+                <td>{{book.BookID}}</td>
+                <td>{{book.BookName}}</td>
+                <td>{{book.Author1}}</td>
+                <td>{{book.Author2}}</td>
+                <td>{{book.Publisher}}</td>
+                <td>{{book.Page}}</td>
+                <td>{{book.Price}}</td>
+                <td>{{book.BookBelongsCourse}}</td>
+                <td>{{book.Book_Issue_To_Student_Date}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
-
-    <table>
-      <tr>
-        <th>Book ID</th>
-        <th>Name</th>
-        <th>Author 1</th>
-        <th>Author 2</th>
-        <th>Publisher</th>
-        <th>Page</th>
-        <th>Price</th>
-        <th>Book Belongs To Course</th>
-        <th>Date</th>
-      </tr>
-      <tr>
-        <td>{{BookID}}</td>
-        <td>{{BookName}}</td>
-        <td>{{Author1}}</td>
-        <td>{{Author2}}</td>
-        <td>{{Publisher}}</td>
-        <td>{{Page}}</td>
-        <td>{{Price}}</td>
-        <td>{{BookBelongsCourse}}</td>
-        <td>{{Book_Issue_To_Student_Date}}</td>
-      </tr>
-    </table>
-  </div>
 </div>
-<div class="container d-flex justify-content-center my-3">
-  <form action="/BookSubmitted" method="post">
-      {% csrf_token %}
-      <input type="submit" value="Book Submit" class="btn btn-primary btn-lg">
-  </form>
+
+<div class="container">
+
 </div>
+
+
+<div class="container my-4">
+    <form action="/BookSubmitted" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="BookNum"><b>Enter Book Id to submit a particular book</b></label>
+                <input type="text" class="form-control" id="BookNum" name="BookIdSubmission"
+                    placeholder="Enter Book ID to submit the book">
+                <div class="text-center mt-3">
+                    <input type="submit" value="Book Submit" class="btn btn-info">
+                </div>
+            </div>
+            <div class="col-md-6 text-center m-auto">
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Submit All Books" class="btn btn-danger btn-lg">
+                </form>
+            </div>
+        </div>
+    </form>
+</div>
+
 {% endblock body %}
