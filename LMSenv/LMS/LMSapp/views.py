@@ -191,12 +191,14 @@ def BookIssueToStudent_Id_Check(request):
 def BookSubmitByStudent_Id_Check(request):
     if request.method == 'POST':
         Student_Library_Registration_Number = request.POST['BookSubmitByStudent']
+        Data=None
         if Book_Issue_Student.objects.filter(Student_Registration_Number=Student_Library_Registration_Number):
+            request.session['Student_Library_Registration_Number'] = Student_Library_Registration_Number
             Data = Book_Issue_Student.objects.filter(Student_Registration_Number=Student_Library_Registration_Number)
-            return render(request,"LMSapp/BookSubmitByStudent.html",{'Data':Data})
         else:
-            messages.error(request,"Registration Number not Exist")
-            return redirect('/')
+            messages.error(request,"This student has not contain any book")
+        return render(request,"LMSapp/BookSubmitByStudent.html",{'Data':Data})
+            
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
     
@@ -337,9 +339,24 @@ def BookIssued(request):
     
 def BookSubmitted(request):
     if request.method == 'POST':
-        stRegNo = request.session['Student_Library_Registration_Number']
-        Book_Issue_Student.objects.filter(Student_Registration_Number=stRegNo).delete()
-        print('Book has successfully subitted by student')
-        return redirect('/')
+        BookIdSubmission = request.POST['BookIdSubmission']
+        Book_Issue_Student.objects.filter(BookID__iexact = BookIdSubmission).delete()
+        messages.success(request,'Book has successfully subitted by student')
+        return render(request,"LMSapp/AdminWelcomePage.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+    
+def SubmitAllBooks(request):
+    if request.method == 'POST':
+        Student_Library_Registration_Number = request.session['Student_Library_Registration_Number']
+        Book_Issue_Student.objects.filter(Student_Registration_Number=Student_Library_Registration_Number).all().delete()
+        messages.success(request,"This student has submitted all books")
+        return render(request,"LMSapp/AdminWelcomePage.html")
+    else:
+        return HttpResponse("<h1>404 - Not Found :(</h1>")
+    
+def MainPage(request):
+    if request.method == 'POST':
+        return render(request,"LMSapp/AdminWelcomePage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")

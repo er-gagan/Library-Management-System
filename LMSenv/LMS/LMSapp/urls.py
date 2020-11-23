@@ -32,5 +32,6 @@ urlpatterns = [
     path('BookIssueToStudent_BookIDCheck',views.BookIssueToStudent_BookIDCheck),
     path('BookIssued',views.BookIssued),
     path('BookSubmitted',views.BookSubmitted),
-    
+    path('MainPage',views.MainPage),
+    path('SubmitAllBooks',views.SubmitAllBooks),   
 ]

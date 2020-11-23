@@ -3,6 +3,14 @@
 {% block Loggout %}
 <a href="/logout" class="btn btn-success">Logout</a>     
 {% endblock Loggout %}
+
+{% block AdminWelcomePage %}
+<form action="MainPage" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Main" class="btn btn-info m-2 my-sm-0">
+</form>
+{% endblock AdminWelcomePage %}
+
 {% block body %}
 <div class="container my-4">
   <h2>Student Details:</h2>

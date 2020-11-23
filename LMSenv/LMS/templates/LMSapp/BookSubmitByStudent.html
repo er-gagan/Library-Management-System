@@ -2,7 +2,16 @@
 {% block Loggout %}
 <a href="/logout" class="btn btn-success">Logout</a>
 {% endblock Loggout %}
+
+{% block AdminWelcomePage %}
+<form action="MainPage" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Main" class="btn btn-info m-2 my-sm-0">
+</form>
+{% endblock AdminWelcomePage %}
+
 {% load static %}
+
 {% block body %}
 <div class="container my-4">
     <h3>Please Enter Carefully <b>Student Library Registration Number</b></h3>
@@ -11,8 +20,9 @@
         {% csrf_token %}
         <div class="form-group">
             <label for="RegNumber">Enter Student Registration Number</label>
-            <input type="text" class="form-control" id="RegNumber" value="{{Data.0.Student_Registration_Number}}"
-                name="BookSubmitByStudent" placeholder="Student Library Registration Number">
+            <input type="text" class="form-control" required autofocus id="RegNumber"
+                value="{{Data.0.Student_Registration_Number}}" name="BookSubmitByStudent"
+                placeholder="Student Library Registration Number">
         </div>
         <button type="submit" class="btn btn-primary mx-auto d-block">Check</button>
     </form>
@@ -106,25 +116,25 @@
 
 
 <div class="container my-4">
-    <form action="/BookSubmitted" method="post">
-        {% csrf_token %}
-        <div class="row">
-            <div class="form-group col-md-6">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <form action="/BookSubmitted" method="post">
+                {% csrf_token %}
                 <label for="BookNum"><b>Enter Book Id to submit a particular book</b></label>
                 <input type="text" class="form-control" id="BookNum" name="BookIdSubmission"
                     placeholder="Enter Book ID to submit the book">
                 <div class="text-center mt-3">
                     <input type="submit" value="Book Submit" class="btn btn-info">
                 </div>
-            </div>
-            <div class="col-md-6 text-center m-auto">
-                <form action="#" method="post">
-                    {% csrf_token %}
-                    <input type="submit" value="Submit All Books" class="btn btn-danger btn-lg">
-                </form>
-            </div>
+            </form>
         </div>
-    </form>
+        <div class="col-md-6 text-center m-auto">
+            <form action="SubmitAllBooks" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Submit All Books" class="btn btn-danger btn-lg">
+            </form>
+        </div>
+    </div>
 </div>
 
 {% endblock body %}
