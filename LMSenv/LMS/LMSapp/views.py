@@ -169,7 +169,17 @@ def Faculty_Registration_Data(request):
         Permanent_Address = request.POST['Permanent_Address']
         Branch = request.POST['Branch']
         Gender = request.POST['Gender']
-        Faculty_Registration(fname = fname,mname = mname,lname = lname,Phone1 = Phone1,Phone2 = Phone2,email = email,city = city,district = district,state = state,pin = pin,Current_Address = Current_Address,Permanent_Address = Permanent_Address,Branch = Branch,Gender = Gender).save()
+
+        if Phone1 == Phone2:
+            messages.error(request,"Phone number must be unique")
+        elif Faculty_Registration.objects.filter(Phone1__iexact=Phone1):
+            messages.error(request,"Record already exist in database")
+        else:
+            Faculty_Registration(fname = fname,mname = mname,lname = lname,Phone1 = Phone1,Phone2 = Phone2,email = email,city = city,district = district,state = state,pin = pin,Current_Address = Current_Address,Permanent_Address = Permanent_Address,Branch = Branch,Gender = Gender).save()
+            Reg = None
+            for reg in Faculty_Registration.objects.filter(Phone1__iexact=Phone1):
+                Reg = reg.Faculty_Registration_Number
+            messages.success(request,"Record stored into database with Registration Number: "+Reg)
         return render(request,"LMSapp/FacultyRegistrationPage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
@@ -247,7 +257,7 @@ def BookIssueToStudent_BookID(request):
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
 
-@csrf_exempt    
+@csrf_exempt
 def BookIssueToStudent_BookIDCheck(request):
     if request.method == 'POST':
         BookId = request.POST['BookIssueToStudent_BookIDCheck']
@@ -336,7 +346,8 @@ def BookIssued(request):
         return render(request,"LMSapp/AdminWelcomePage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
-    
+
+@csrf_exempt
 def BookSubmitted(request):
     if request.method == 'POST':
         BookIdSubmission = request.POST['BookIdSubmission']
