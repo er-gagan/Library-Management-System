@@ -179,7 +179,7 @@ def Faculty_Registration_Data(request):
             Reg = None
             for reg in Faculty_Registration.objects.filter(Phone1__iexact=Phone1):
                 Reg = reg.Faculty_Registration_Number
-            messages.success(request,"Record stored into database with Registration Number: "+Reg)
+            messages.success(request,"Record stored into database with Registration Number: "+str(Reg))
         return render(request,"LMSapp/FacultyRegistrationPage.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
@@ -216,10 +216,28 @@ def BookIssueToFaculty_id_check(request):
     if request.method == 'POST':
         Faculty_Library_Registration_Number = request.POST['BookIssueToFaculty']
         if Faculty_Registration.objects.filter(Faculty_Registration_Number=Faculty_Library_Registration_Number):
-            print("Faculty Registration Number is exist")
+            faculty = Faculty_Registration.objects.filter(Faculty_Registration_Number=Faculty_Library_Registration_Number)
+            for data in faculty:
+                Faculty_Registration_Number = data.Faculty_Registration_Number
+                fname = data.fname
+                mname = data.mname
+                lname = data.lname
+                Phone1 = data.Phone1
+                Phone2 = data.Phone2
+                email = data.email
+                city = data.city
+                district = data.district
+                state = data.state
+                pin = data.pin
+                Current_Address = data.Current_Address
+                Permanent_Address = data.Permanent_Address
+                Branch = data.Branch
+                Gender = data.Gender
+                context = {'RegNo' : Faculty_Registration_Number,'fname' : fname,'mname' : mname,'lname' : lname,'Phone1' : Phone1,'Phone2' : Phone2,'email' : email,'city' : city,'district' : district,'state' : state,'pin' : pin,'Current_Address' : Current_Address,'Permanent_Address' : Permanent_Address,'Branch' : Branch,'Gender' : Gender}
+                return render(request,'LMSapp/BookIssuedToFaculty_IdCheck.html',context)
         else:
-            print("Faculty Registration Number not Exist")
-        return render(request,"LMSapp/BookIssueToFaculty.html")
+            messages.error(request,"Faculty registration number is not exist")
+            return render(request,"LMSapp/BookIssueToFaculty.html")
     else:
         return HttpResponse("<h1>404 - Not Found :(</h1>")
     

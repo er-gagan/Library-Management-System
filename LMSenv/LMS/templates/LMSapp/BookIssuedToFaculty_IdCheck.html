@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+{% block Loggout %}
+<a href="/logout" class="btn btn-success">Logout</a>
+{% endblock Loggout %}
+
+{% block AdminWelcomePage %}
+<form action="MainPage" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Main" class="btn btn-info m-2 my-sm-0">
+</form>
+{% endblock AdminWelcomePage %}
+
+{% block body %}
+<div class="container my-4">
+  <h2>Faculty Details:</h2>
+  <hr>
+  <form action="#" method="POST">
+    {% csrf_token %}
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="fname">First Name</label>
+        <input type="text" class="form-control" id="fname" readonly name="fname" value="{{fname}}">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="mname">Middle Name</label>
+        <input readonly value="{{mname}}" type="text" class="form-control" id="mname" name="mname">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="lname">Last Name</label>
+        <input readonly value="{{lname}}" type="text" class="form-control" id="lname" name="lname">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="Phone1">Phone 1</label>
+        <input readonly value="{{Phone1}}" type="text" class="form-control" id="Phone1" name="Phone1">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="Phone2">Phone 2</label>
+        <input readonly value="{{Phone2}}" type="text" class="form-control" id="Phone2" name="Phone2">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="Email">Email Address</label>
+        <input readonly value="{{email}}" type="email" class="form-control" id="Email" aria-describedby="emailHelp"
+          name="email">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="city">City</label>
+        <input readonly value="{{city}}" type="text" class="form-control" id="city" name="city">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="District">District</label>
+        <input readonly value="{{district}}" type="text" class="form-control" id="District" name="district">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="State">State</label>
+        <input readonly type="text" class="form-control" id="State" name="state" value="{{state}}">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="PIN/ZIP">PIN/ZIP Code</label>
+        <input readonly value="{{pin}}" type="text" class="form-control" id="PIN/ZIP" name="pin">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="CurrentAddress">Current Address</label>
+      <input readonly value="{{Current_Address}}" type="text" class="form-control" name="CurrentAddress"
+        id="CurrentAddress" placeholder="1234 Main St">
+    </div>
+    <div class="form-group">
+      <label for="PermanentAddress">Permanent Address</label>
+      <input readonly value="{{Permanent_Address}}" type="text" class="form-control" id="PermanentAddress"
+        placeholder="Apartment, studio, or floor" name="PermanentAddress">
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group col-md-4">
+        <label for="Branch">Branch</label>
+        <input readonly type="text" class="form-control" id="Branch" name="Branch" value="{{Branch}}">
+      </div>
+
+      <div class="form-group col-md-3">
+        <label for="Gender">Gender</label>
+        <input readonly type="text" class="form-control" id="Gender" name="Gender" value="{{Gender}}">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="RegistrationNumber">Registration Number</label>
+        <input readonly type="text" class="form-control" id="RegistrationNumber" name="regNumber" value="{{RegNo}}">
+      </div>
+
+      <div class="form-group text-center my-4 col-md-3">
+        <button type="submit" class="btn btn-primary btn-lg">Confirm</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+{% endblock body %}
