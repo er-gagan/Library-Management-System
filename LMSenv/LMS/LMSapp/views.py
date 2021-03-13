@@ -25,6 +25,7 @@ def AdminWelcomePage(request):
         if user is not None:
             login(request,user)
             messages.success(request,"Successfully Logged In")
+            
             return render(request,"LMSapp/AdminWelcomePage.html")
         else:
             messages.error(request,"Invallid Credentials, Please Try Again")
